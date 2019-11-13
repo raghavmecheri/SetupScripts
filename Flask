@@ -1,0 +1,16 @@
+#!/bin/sh
+MASTERPATH="${1}/${2}"
+# Call as: ./Flask ./Projects webserver
+echo "This script assumes that you have git, pip and Python installed!"
+echo "Setting up $MASTERPATH"
+mkdir $MASTERPATH
+cd $MASTERPATH
+mkdir {app,docs,app/modules}
+curl -o .gitignore https://raw.githubusercontent.com/pallets/flask/master/.gitignore
+touch {README.md,run.py,app/__init__.py,app/modules/__init__.py}
+echo "Initialising and activating virtual environment."
+pip3 install virtualenv
+virtualenv env
+git init
+git add .
+git commit -m "Barebones setup for Flask"
